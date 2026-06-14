@@ -40,11 +40,10 @@ public class UserController {
         this.userService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    
+
     @PostMapping
     public ResponseEntity<UserResponse> create(@RequestBody UserCreateRequest user) {
         var userResponse = this.userService.create(user);
         return ResponseEntity.ok(userResponse);
     }
-
 }
