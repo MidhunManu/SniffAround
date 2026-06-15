@@ -21,6 +21,6 @@ public class EventRVSP {
     @JoinColumn(name = "event")
     private Event event;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
 }

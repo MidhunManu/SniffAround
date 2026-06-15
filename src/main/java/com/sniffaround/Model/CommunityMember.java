@@ -20,6 +20,6 @@ public class CommunityMember {
     @Column(nullable = false)
     private Timestamp joinedAt;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
 }

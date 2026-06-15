@@ -16,7 +16,7 @@ public class Reaction {
     @Column(nullable = false)
     private String type;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post")
