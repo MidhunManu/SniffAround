@@ -15,17 +15,28 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @Column(nullable = false)
     private String username;
+
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false)
     private String password;
+
+    @Column(name = "avatarurl")
     private String avatarURL;
+
     @Column(nullable = false)
     private String role;
-    @Column(nullable = false)
+
+    @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;
+
+    @Column(name = "updated_at")
     private Timestamp updatedAt;
+
+    @Column(name = "deleted_at")
     private Timestamp deletedAt;
 }
