@@ -8,8 +8,10 @@ import com.sniffaround.Mapper.UserMapper;
 import com.sniffaround.Model.User;
 import com.sniffaround.Repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -17,6 +19,7 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public List<UserResponse> index() {
         return this.userMapper.toUserResponseList(this.userRepository.findAll());
@@ -43,7 +46,14 @@ public class UserService {
 
     public UserResponse create(UserCreateRequest request) {
         User user = this.userMapper.toUser(request);
+        user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         User saved = this.userRepository.save(user);
         return this.userMapper.toUserResponse(saved);
+    }
+
+    public UserResponse findByName(String username) {
+        User user = this.userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
+        return this.userMapper.toUserResponse(user);
     }
 }
