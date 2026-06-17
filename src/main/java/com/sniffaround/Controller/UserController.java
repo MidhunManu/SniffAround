@@ -1,5 +1,6 @@
 package com.sniffaround.Controller;
 
+import com.sniffaround.Annotation.CheckOwnership;
 import com.sniffaround.DTO.UserCreateRequest;
 import com.sniffaround.DTO.UserResponse;
 import com.sniffaround.DTO.UserUpdateRequest;
@@ -30,6 +31,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @CheckOwnership
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody UserUpdateRequest request) {
         var user = this.userService.update(id, request);
         return ResponseEntity.ok(user);
@@ -39,11 +41,5 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.userService.delete(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping
-    public ResponseEntity<UserResponse> create(@RequestBody UserCreateRequest user) {
-        var userResponse = this.userService.create(user);
-        return ResponseEntity.ok(userResponse);
     }
 }
