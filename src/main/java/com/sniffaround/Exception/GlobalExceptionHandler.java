@@ -15,4 +15,10 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND.value(), Instant.now());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+
+    @ExceptionHandler(RefreshTokenNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleRefreshTokenNotFound(RefreshTokenNotFoundException e) {
+        ErrorResponse response = new ErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND.value(), Instant.now());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
 }
