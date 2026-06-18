@@ -27,4 +27,33 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND.value(), Instant.now());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
-}
+
+    @ExceptionHandler(UserAlreadyJoinedCommunityException.class)
+    public ResponseEntity<ErrorResponse> handleUserAlreadyJoinedCommunityException(UserAlreadyJoinedCommunityException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new ErrorResponse(
+                        e.getMessage(),
+                        HttpStatus.CONFLICT.value(),
+                        Instant.now()
+                ));
+    }
+
+    @ExceptionHandler(UserNotCommunityMemberException.class)
+    public ResponseEntity<ErrorResponse> handleUserNotCommunityMemberException(UserNotCommunityMemberException e) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(new ErrorResponse(
+                        e.getMessage(),
+                        HttpStatus.FORBIDDEN.value(),
+                        Instant.now()
+                ));
+    }
+
+    @ExceptionHandler(OwnershipTransferRequiredException.class)
+    public ResponseEntity<ErrorResponse> handleOwnershipTransferRequiredException(OwnershipTransferRequiredException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new ErrorResponse(
+                        e.getMessage(),
+                        HttpStatus.CONFLICT.value(),
+                        Instant.now()
+                ));
+    }}
