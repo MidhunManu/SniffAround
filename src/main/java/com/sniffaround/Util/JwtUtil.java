@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    @Value("${jwt.secret}")  // ← correct
+    @Value("${jwt.secret}")
     private String SECRET;
     @Value("${jwt.expiration}")
     private long EXPIRATION;
