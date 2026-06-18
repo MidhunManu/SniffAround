@@ -31,6 +31,7 @@ public class RefreshTokenService {
     public RefreshToken createRefreshToken(String username) {
         User user = this.userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
         this.refreshTokenRepository.deleteByUser(user);
+        this.refreshTokenRepository.flush();
 
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setUser(user);

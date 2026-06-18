@@ -21,4 +21,10 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND.value(), Instant.now());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+
+    @ExceptionHandler(PetNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handlePetNotFoundException(PetNotFoundException e) {
+        ErrorResponse response = new ErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND.value(), Instant.now());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
 }

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class pet {
+public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
