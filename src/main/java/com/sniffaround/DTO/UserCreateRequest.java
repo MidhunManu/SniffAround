@@ -8,7 +8,6 @@ public record UserCreateRequest(
         String email,
         @NotBlank(message = "password must not be null")
         String password,
-        String avatarURL,
-        String role
+        String avatarURL
 ) {
 }

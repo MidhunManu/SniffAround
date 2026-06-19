@@ -1,5 +1,6 @@
 package com.sniffaround.Service;
 
+import com.sniffaround.Enum.UserRoleEnum;
 import com.sniffaround.Exception.UserNotFoundException;
 import com.sniffaround.Repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         com.sniffaround.Model.User appUser = this.userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
         return User.withUsername(appUser.getUsername())
                 .password(appUser.getPassword())
-                .roles(appUser.getRole())
+                .roles("USER")
                 .build();
     }
 }

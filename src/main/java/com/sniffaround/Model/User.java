@@ -28,9 +28,6 @@ public class User {
     @Column(name = "avatarurl")
     private String avatarURL;
 
-    @Column(nullable = false)
-    private String role;
-
     @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;
 
