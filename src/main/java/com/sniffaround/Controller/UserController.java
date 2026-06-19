@@ -19,8 +19,11 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> index() {
-        var users = this.userService.index();
+    public ResponseEntity<List<UserResponse>> index(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int size
+    ) {
+        var users = this.userService.index(page, size);
         return ResponseEntity.ok(users);
     }
 

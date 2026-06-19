@@ -11,6 +11,9 @@ import com.sniffaround.Model.User;
 import com.sniffaround.Repository.PetRepository;
 import com.sniffaround.Repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +27,10 @@ public class PetService {
     private final UserRepository userRepository;
     private final PetMapper petMapper;
 
-    public List<PetResponse> index() {
-        return this.petRepository.findAll()
+    public List<PetResponse> index(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+        return this.petRepository
+                .findAll(pageable)
                 .stream()
                 .map(this.petMapper::toPetResponse)
                 .toList();

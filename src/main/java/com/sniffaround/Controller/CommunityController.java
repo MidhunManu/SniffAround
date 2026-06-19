@@ -18,8 +18,11 @@ public class CommunityController {
     private final CommunityService communityService;
 
     @GetMapping
-    public ResponseEntity<List<CommunityResponse>> index() {
-        return ResponseEntity.ok(this.communityService.index());
+    public ResponseEntity<List<CommunityResponse>> index(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int size
+    ) {
+        return ResponseEntity.ok(this.communityService.index(page, size));
     }
 
     @GetMapping("/{id}")

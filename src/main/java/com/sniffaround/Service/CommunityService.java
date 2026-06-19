@@ -15,6 +15,9 @@ import com.sniffaround.Repository.CommunityMemberRepository;
 import com.sniffaround.Repository.CommunityRepository;
 import com.sniffaround.Repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,8 +35,10 @@ public class CommunityService {
     private final CommunityMemberRepository communityMemberRepository;
     private final CommunityMemberMapper communityMemberMapper;
 
-    public List<CommunityResponse> index() {
-        return this.communityRepository.findAll()
+    public List<CommunityResponse> index(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+        return this.communityRepository
+                .findAll(pageable)
                 .stream()
                 .map(this.communityMapper::toCommunityResponse)
                 .toList();

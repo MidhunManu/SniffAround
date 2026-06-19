@@ -17,8 +17,11 @@ public class PetController {
     private final PetService petService;
 
     @GetMapping
-    public ResponseEntity<List<PetResponse>> index() {
-        return ResponseEntity.ok(this.petService.index());
+    public ResponseEntity<List<PetResponse>> index(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int size
+    ) {
+        return ResponseEntity.ok(this.petService.index(page, size));
     }
 
     @PostMapping
