@@ -38,7 +38,8 @@ pipeline {
                 ./mvnw flyway:migrate \
                 -Dflyway.url=jdbc:postgresql://db:5432/sniffaround \
                 -Dflyway.user=$DB_USERNAME \
-                -Dflyway.password=$DB_PASSWORD
+                -Dflyway.password=$DB_PASSWORD \
+                -Dflyway.baselineOnMigrate=true
                 '''
             }
         }
