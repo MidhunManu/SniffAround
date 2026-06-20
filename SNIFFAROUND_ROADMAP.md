@@ -2,8 +2,6 @@
 
 Track progress by checking items off as you build. Organized by phase, then by layer (entities → repositories → services → controllers → security → tests → infra) so you can see exactly what's left in each slice.
 
-> Tip: in most Markdown renderers (GitHub, GitLab, Obsidian, VS Code), `- [ ]` and `- [x]` render as clickable checkboxes.
-
 ---
 
 ## Legend
