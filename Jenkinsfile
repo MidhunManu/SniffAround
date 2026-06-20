@@ -10,6 +10,10 @@ pipeline {
         DB_USERNAME = credentials('DB_USERNAME')
         DB_PASSWORD = credentials('DB_PASSWORD')
         DB_NAME = credentials('DB_NAME')
+
+         FLYWAY_USER = credentials('DB_USERNAME')
+         FLYWAY_PASSWORD = credentials('DB_PASSWORD')
+         FLYWAY_URL = "jdbc:postgresql://localhost:5432/${DB_NAME}"
     }
 
     stages {
@@ -29,6 +33,12 @@ pipeline {
         stage('Build') {
             steps {
                 sh './mvnw clean package -DskipTests'
+            }
+        }
+
+        stage('Migration') {
+            steps {
+                sh './mvnw flyway:migrate'
             }
         }
 
