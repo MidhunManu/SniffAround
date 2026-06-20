@@ -410,7 +410,7 @@ Use this as a final coverage sweep — not phase-ordered, just "did I cover this
 - [ ] Mobile push notification deep-linking
 - [ ] Admin dashboard (separate Spring Boot module or just protected endpoints + simple UI)
 - [ ] Multi-language support (i18n on validation messages, notification templates)
-- [ ] GraphQL gateway as alternative to REST (learning exercise, optional) 🔁
+- [ ] GraphQL gateway as alternative to REST
 - [ ] WebSocket support for live comment updates on popular posts
 
 ---
