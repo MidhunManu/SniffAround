@@ -18,8 +18,8 @@ Track progress by checking items off as you build. Organized by phase, then by l
 - [X] Initialize Spring Boot project (Spring Initializr: Web, JPA, Security, Validation, PostgreSQL driver)
 - [X] Set up project structure (`controller`, `service`, `repository`, `entity`, `dto`, `mapper`, `config`, `exception`, `security`)
 - [X] Configure `application.yml` (dev / test / prod profiles)
-- [ ] Set up Flyway (`src/main/resources/db/migration`)
-- [ ] Add Docker Compose (PostgreSQL, Redis, RabbitMQ, MinIO)
+- [x] Set up Flyway (`src/main/resources/db/migration`)
+- [x] Add Docker Compose (PostgreSQL, Redis, RabbitMQ, MinIO)
 - [ ] Set up Testcontainers base test config
 - [X] Configure Lombok (or commit to records/plain getters — pick one and be consistent)
 - [X] Add MapStruct dependency + annotation processor
@@ -50,30 +50,30 @@ Track progress by checking items off as you build. Organized by phase, then by l
 ### 1.2 Enums
 
 - [x] `Role` (`USER`, `MODERATOR`, `ADMIN`)
-- [ ] `CommunityRole` (`MEMBER`, `MODERATOR`, `ADMIN`)
-- [ ] `PetSpecies` (`DOG`, `CAT`, `BIRD`, `RABBIT`, `OTHER`)
-- [ ] `PostCategory` (`VETS`, `FOOD`, `STORES`, `GROOMING`, `GENERAL`)
-- [ ] `ReactionType` (`LIKE`, `HELPFUL`, `LOVE`)
-- [ ] `RsvpStatus` (`GOING`, `MAYBE`, `NOT_GOING`)
-- [ ] `NotificationChannel` (`EMAIL`, `PUSH`, `IN_APP`)
-- [ ] `NotificationType` (`NEW_POST`, `NEW_COMMENT`, `EVENT_REMINDER`, `RSVP_UPDATE`)
+- [x] `CommunityRole` (`MEMBER`, `MODERATOR`, `ADMIN`)
+- [x] `PetSpecies` (`DOG`, `CAT`, `BIRD`, `RABBIT`, `OTHER`)
+- [x] `PostCategory` (`VETS`, `FOOD`, `STORES`, `GROOMING`, `GENERAL`)
+- [x] `ReactionType` (`LIKE`, `HELPFUL`, `LOVE`)
+- [x] `RsvpStatus` (`GOING`, `MAYBE`, `NOT_GOING`)
+- [x] `NotificationChannel` (`EMAIL`, `PUSH`, `IN_APP`)
+- [x] `NotificationType` (`NEW_POST`, `NEW_COMMENT`, `EVENT_REMINDER`, `RSVP_UPDATE`)
 
 ### 1.3 Database Migrations (Flyway)
 
-- [ ] `V1__create_users_table.sql`
-- [ ] `V2__create_pets_table.sql`
-- [ ] `V3__create_communities_table.sql`
-- [ ] `V4__create_community_members_table.sql`
-- [ ] `V5__create_posts_table.sql`
-- [ ] `V6__create_comments_table.sql`
-- [ ] `V7__create_reactions_table.sql`
-- [ ] `V8__create_events_table.sql`
-- [ ] `V9__create_event_rsvps_table.sql`
-- [ ] `V10__create_marketplace_listings_table.sql`
-- [ ] `V11__create_media_files_table.sql`
-- [ ] `V12__create_notifications_table.sql`
+- [x] `V1__create_users_table.sql`
+- [x] `V2__create_pets_table.sql`
+- [x] `V3__create_communities_table.sql`
+- [x] `V4__create_community_members_table.sql`
+- [x] `V5__create_posts_table.sql`
+- [x] `V6__create_comments_table.sql`
+- [x] `V7__create_reactions_table.sql`
+- [x] `V8__create_events_table.sql`
+- [x] `V9__create_event_rsvps_table.sql`
+- [x] `V10__create_marketplace_listings_table.sql`
+- [x] `V11__create_media_files_table.sql`
+- [x] `V12__create_notifications_table.sql`
 - [ ] `V13__add_indexes.sql` (feed query, FTS, notifications, events)
-- [ ] `V14__add_refresh_tokens_table.sql`
+- [x] `V14__add_refresh_tokens_table.sql`
 
 ### 1.4 🧪 Entity-layer tests
 
