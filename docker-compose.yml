@@ -1,5 +1,6 @@
 services:
   app:
+    image: sniffaround:${IMAGE_TAG}
     build: .
     ports:
       - "8090:8080"

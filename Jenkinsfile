@@ -10,6 +10,8 @@ pipeline {
         DB_USERNAME = credentials('DB_USERNAME')
         DB_PASSWORD = credentials('DB_PASSWORD')
         DB_NAME = credentials('DB_NAME')
+
+        IMAGE_TAG = "${BUILD_NUMBER}"
     }
 
     stages {
