@@ -2,6 +2,7 @@ package com.sniffaround.Controller;
 
 import com.sniffaround.Service.MinioService;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
+@Profile("!test")
 @RestController
 @RequestMapping("/upload")
 @AllArgsConstructor
