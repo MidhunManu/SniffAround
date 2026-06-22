@@ -2,8 +2,9 @@ package com.sniffaround.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record PetCreateRequest(
         @NotBlank
@@ -15,12 +16,12 @@ public record PetCreateRequest(
         @NotBlank
         @Size(max = 100)
         String breed,
-        Date birthDate,
+        LocalDate birthDate,
         @NotBlank
         @Size(max = 500)
         String bio,
         @NotBlank
         @Size(max = 100)
-        String photoURL
+        MultipartFile photo
 ) {
 }

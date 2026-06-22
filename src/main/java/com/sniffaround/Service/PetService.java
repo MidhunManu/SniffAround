@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -26,6 +27,7 @@ public class PetService {
     private final PetRepository petRepository;
     private final UserRepository userRepository;
     private final PetMapper petMapper;
+    private final MinioService minioService;
 
     public List<PetResponse> index(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
@@ -40,16 +42,19 @@ public class PetService {
         return this.petMapper.toPetResponse(this.petRepository.findById(id).orElseThrow(() -> new PetNotFoundException(id)));
     }
 
-    public PetResponse create(PetCreateRequest request) {
-        String ownerName = SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getName();
+    public PetResponse create(PetCreateRequest request) throws Exception {
+        String ownerName = Objects.requireNonNull(SecurityContextHolder
+                        .getContext()
+                        .getAuthentication())
+                        .getName();
 
         User owner = this.userRepository.findByUsername(ownerName)
                 .orElseThrow(() -> new UserNotFoundException(ownerName));
 
         Pet pet = this.petMapper.toPet(request);
+        String key = this.minioService.uploadPublicFile(request.photo());
+        String photoURL = this.minioService.getPublicUrl(key);
+        pet.setPhotoURL(photoURL);
         pet.setUser(owner);
         pet.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         return this.petMapper.toPetResponse(this.petRepository.save(pet));

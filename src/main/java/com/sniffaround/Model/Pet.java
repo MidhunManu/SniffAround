@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity(name = "pets")
 @AllArgsConstructor
@@ -23,7 +23,7 @@ public class Pet {
     @Column(nullable = false)
     private String breed;
     @Column(nullable = false)
-    private Date birthDate;
+    private LocalDate birthDate;
     @Column(nullable = false)
     private String bio;
     @Column(nullable = false)
