@@ -24,7 +24,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh './mvnw test -Dspring-boot.run.profiles=test'
+                sh './mvnw clean test -Dspring.profiles.active=test'
             }
         }
 
