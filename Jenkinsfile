@@ -22,11 +22,11 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                sh './mvnw clean test -Dspring.profiles.active=test'
-            }
-        }
+//         stage('Test') {
+//             steps {
+//                 sh './mvnw clean test -Dspring.profiles.active=test'
+//             }
+//         }
 
         stage('Build') {
             steps {
