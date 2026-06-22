@@ -1,6 +1,5 @@
 package com.sniffaround.Service;
 
-import com.sniffaround.Enum.UserRoleEnum;
 import com.sniffaround.Exception.UserNotFoundException;
 import com.sniffaround.Repository.UserRepository;
 import lombok.AllArgsConstructor;

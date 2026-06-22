@@ -6,7 +6,6 @@ import com.sniffaround.Model.RefreshToken;
 import com.sniffaround.Model.User;
 import com.sniffaround.Repository.RefreshTokenRepository;
 import com.sniffaround.Repository.UserRepository;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
