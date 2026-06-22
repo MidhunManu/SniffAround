@@ -7,10 +7,8 @@ import io.minio.SetBucketPolicyArgs;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-@Profile("!test")
 @Component
 @RequiredArgsConstructor
 public class MinioBucketInitializer {
