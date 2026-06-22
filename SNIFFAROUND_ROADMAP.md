@@ -130,11 +130,11 @@ Track progress by checking items off as you build. Organized by phase, then by l
 
 ### 3.1 Core implementation
 
-- [ ] `PetController` (CRUD + photo upload)
-- [ ] `PetService`
-- [ ] `PetRepository`
-- [ ] DTOs: `CreatePetRequest`, `UpdatePetRequest`, `PetResponse`
-- [ ] `PetMapper`
+- [x] `PetController` (CRUD + photo upload)
+- [x] `PetService`
+- [x] `PetRepository`
+- [x] DTOs: `CreatePetRequest`, `UpdatePetRequest`, `PetResponse`
+- [x] `PetMapper`
 - [ ] Ownership check: only the owner can update/delete their pet
 - [ ] Pet photo upload wired to `FileStorageService` (Phase 7)
 
