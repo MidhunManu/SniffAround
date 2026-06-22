@@ -7,6 +7,7 @@ import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.errors.MinioException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +18,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-
+@Profile("!test")
 @Service
 public class MinioService {
 
