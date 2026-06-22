@@ -42,7 +42,7 @@ public class PetService {
         return this.petMapper.toPetResponse(this.petRepository.findById(id).orElseThrow(() -> new PetNotFoundException(id)));
     }
 
-    public PetResponse create(PetCreateRequest request) throws Exception {
+    public PetResponse create(PetCreateRequest request) {
         String ownerName = Objects.requireNonNull(SecurityContextHolder
                         .getContext()
                         .getAuthentication())

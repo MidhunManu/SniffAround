@@ -56,4 +56,21 @@ public class GlobalExceptionHandler {
                         HttpStatus.CONFLICT.value(),
                         Instant.now()
                 ));
-    }}
+    }
+
+    @ExceptionHandler(FileUploadException.class)
+    public ResponseEntity<ErrorResponse> handleFileUploadException(FileUploadException e) {
+        HttpStatus httpStatus = e.getHttpStatus();
+        return switch (httpStatus) {
+            case UNPROCESSABLE_CONTENT, SERVICE_UNAVAILABLE, CONTENT_TOO_LARGE, INSUFFICIENT_STORAGE ->
+                ResponseEntity
+                        .status(e.getHttpStatus())
+                        .body(new ErrorResponse(
+                                e.getMessage(),
+                                e.getHttpStatus().value(),
+                                Instant.now()
+                        ));
+            default -> ResponseEntity.internalServerError().build();
+        };
+    }
+}

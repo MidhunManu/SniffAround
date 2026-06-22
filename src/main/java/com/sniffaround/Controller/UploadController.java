@@ -21,7 +21,7 @@ public class UploadController {
     public final MinioService minioService;
 
     @PostMapping(value = "/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Map<String, String>> uploadPhoto(@RequestParam("file")MultipartFile file) throws Exception {
+    public ResponseEntity<Map<String, String>> uploadPhoto(@RequestParam("file")MultipartFile file) {
         String objectKey = this.minioService.uploadPublicFile(file);
         String url = this.minioService.getPublicUrl(objectKey);
         return ResponseEntity.ok(Map.of("PhotoUrl", url));
