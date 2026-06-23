@@ -135,7 +135,7 @@ Track progress by checking items off as you build. Organized by phase, then by l
 - [x] `PetRepository`
 - [x] DTOs: `CreatePetRequest`, `UpdatePetRequest`, `PetResponse`
 - [x] `PetMapper`
-- [ ] Ownership check: only the owner can update/delete their pet
+- [x] Ownership check: only the owner can update/delete their pet
 - [x] Pet photo upload wired to `FileStorageService` (Phase 7)
 
 ### 3.2 🧪 Tests
