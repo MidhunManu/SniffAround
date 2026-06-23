@@ -3,7 +3,6 @@ package com.sniffaround.Aspect;
 import com.sniffaround.Annotation.CheckOwnership;
 import com.sniffaround.Enum.ResourceTypeEnum;
 import com.sniffaround.Exception.ForbiddenResourceException;
-import com.sniffaround.Exception.PetNotFoundException;
 import com.sniffaround.Exception.UserNotFoundException;
 import com.sniffaround.Model.User;
 import com.sniffaround.Repository.PetRepository;
