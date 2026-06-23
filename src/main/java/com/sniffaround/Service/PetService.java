@@ -71,4 +71,21 @@ public class PetService {
         this.petRepository.save(pet);
         return this.petMapper.toPetResponse(pet);
     }
+
+    public List<PetResponse> showMyPets() {
+        String username = Objects.requireNonNull(SecurityContextHolder
+                        .getContext()
+                        .getAuthentication())
+                        .getName();
+
+        User user = this.userRepository
+                .findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(username));
+
+        return this.petRepository
+                .findAllByUserId(user.getId())
+                .stream()
+                .map(this.petMapper::toPetResponse)
+                .toList();
+    }
 }

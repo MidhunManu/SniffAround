@@ -1,9 +1,9 @@
 package com.sniffaround.Controller;
 
 import com.sniffaround.Annotation.CheckOwnership;
-import com.sniffaround.DTO.UserCreateRequest;
 import com.sniffaround.DTO.UserResponse;
 import com.sniffaround.DTO.UserUpdateRequest;
+import com.sniffaround.Enum.ResourceTypeEnum;
 import com.sniffaround.Model.User;
 import com.sniffaround.Service.UserService;
 import lombok.AllArgsConstructor;
@@ -34,13 +34,14 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    @CheckOwnership
+    @CheckOwnership(ResourceTypeEnum.USER)
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody UserUpdateRequest request) {
         var user = this.userService.update(id, request);
         return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("/{id}")
+    @CheckOwnership(ResourceTypeEnum.USER)
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.userService.delete(id);
         return ResponseEntity.noContent().build();
