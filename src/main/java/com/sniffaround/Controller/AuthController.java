@@ -2,6 +2,7 @@ package com.sniffaround.Controller;
 
 import com.sniffaround.DTO.*;
 import com.sniffaround.Model.RefreshToken;
+import com.sniffaround.Notification.UserRegisteredNotification;
 import com.sniffaround.Service.RefreshTokenService;
 import com.sniffaround.Service.UserService;
 import com.sniffaround.Util.JwtUtil;
@@ -12,7 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/auth")
@@ -22,6 +23,7 @@ public class AuthController {
     private final JwtUtil jwtUtil;
     private final UserService userService;
     private final RefreshTokenService refreshTokenService;
+    private UserRegisteredNotification userRegisteredNotification;
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
@@ -33,9 +35,10 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody UserCreateRequest request) {
-        this.userService.create(request);
+        UserResponse response = this.userService.create(request);
         String token = this.jwtUtil.generateToken(request.username());
         RefreshToken refreshToken = this.refreshTokenService.createRefreshToken(request.username());
+        this.userRegisteredNotification.sendEmail(response.email());
         return ResponseEntity.ok(new AuthResponse(token, refreshToken.getToken()));
     }
 
@@ -57,9 +60,9 @@ public class AuthController {
 
     @GetMapping("/me")
     public ResponseEntity<UserResponse> me() {
-        String username = SecurityContextHolder
-                .getContext()
-                .getAuthentication()
+        String username = Objects.requireNonNull(SecurityContextHolder
+                        .getContext()
+                        .getAuthentication())
                 .getName();
 
         return ResponseEntity.ok(this.userService.findByName(username));

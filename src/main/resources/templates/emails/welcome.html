@@ -1,22 +1,110 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<body>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
 
-<h1>
-    Welcome <span th:text="${name}">User</span> 🚀
-</h1>
+<body style="margin:0; padding:0; background-color:#f4f6f8; font-family:Arial, sans-serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center" style="padding:40px 0;">
+
+            <table width="600" cellpadding="0" cellspacing="0"
+                   style="background:#ffffff; border-radius:12px; overflow:hidden;">
+
+                <!-- Header -->
+                <tr>
+                    <td style="background:#111827; padding:30px; text-align:center;">
+
+                        <h1 style="color:#ffffff; margin:0; font-size:32px;">
+                            Welcome 🚀
+                        </h1>
+
+                    </td>
+                </tr>
 
 
-<p>
-    Thanks for joining our platform.
-</p>
+                <!-- Content -->
+                <tr>
+                    <td style="padding:40px; color:#374151;">
+
+                        <h2 style="margin-top:0;">
+                            Hey <span th:text="${name}">User</span> 👋
+                        </h2>
 
 
-<p>
-    Your email:
-    <span th:text="${email}"></span>
-</p>
+                        <p style="font-size:16px; line-height:1.6;">
+                            Thanks for joining us.
+                            We are excited to have you on board.
+                        </p>
+
+
+                        <p style="font-size:16px; line-height:1.6;">
+                            Your account has been successfully created.
+                        </p>
+
+
+                        <div style="
+                            background:#f3f4f6;
+                            padding:20px;
+                            border-radius:8px;
+                            margin:25px 0;
+                        ">
+
+                            <p style="margin:0;">
+                                <strong>Email:</strong>
+                                <span th:text="${email}">
+                                    user@example.com
+                                </span>
+                            </p>
+
+                        </div>
+
+
+                        <a href="#"
+                           style="
+                           display:inline-block;
+                           background:#2563eb;
+                           color:white;
+                           text-decoration:none;
+                           padding:14px 28px;
+                           border-radius:8px;
+                           font-weight:bold;
+                           ">
+                            Explore Platform
+                        </a>
+
+
+                    </td>
+                </tr>
+
+
+                <!-- Footer -->
+                <tr>
+                    <td style="
+                        background:#f9fafb;
+                        padding:20px;
+                        text-align:center;
+                        color:#6b7280;
+                        font-size:14px;
+                    ">
+
+                        <p style="margin:0;">
+                            © 2026 Sniffaround. All rights reserved.
+                        </p>
+
+                    </td>
+                </tr>
+
+
+            </table>
+
+        </td>
+    </tr>
+</table>
 
 
 </body>
