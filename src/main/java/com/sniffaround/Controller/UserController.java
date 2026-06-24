@@ -5,6 +5,7 @@ import com.sniffaround.DTO.UserResponse;
 import com.sniffaround.DTO.UserUpdateRequest;
 import com.sniffaround.Enum.ResourceTypeEnum;
 import com.sniffaround.Model.User;
+import com.sniffaround.Service.MailService;
 import com.sniffaround.Service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final MailService mailService;
 
     @GetMapping
     public ResponseEntity<List<UserResponse>> index(
@@ -45,5 +47,11 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.userService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/send-mail")
+    public void sendMail() throws Exception {
+        this.mailService.send("midhunmanu384@gmail.com", "subject", "body @3");
+        System.out.println("doing some other activity.");
     }
 }
