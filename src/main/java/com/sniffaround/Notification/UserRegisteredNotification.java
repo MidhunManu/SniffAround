@@ -1,9 +1,11 @@
 package com.sniffaround.Notification;
 
+import com.sniffaround.DTO.EmailMessage;
 import com.sniffaround.Interface.Notification;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -16,27 +18,16 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class UserRegisteredNotification implements Notification {
-    private final JavaMailSender mailSender;
-    private final TemplateEngine templateEngine;
+    private final RabbitTemplate rabbitTemplate;
 
-    @Async
     @Override
     public void sendEmail(String to) {
-        try {
-            Context context = new Context();
-            context.setVariables(Map.of("name", "user", "email", to));
+        EmailMessage emailMessage = new EmailMessage(
+                to,
+                "Welcome to SniffAround",
+                "Welcome"
+        );
 
-            String subject = "Welcome to Sniffaround";
-            String html = this.templateEngine.process("emails/welcome", context);
-            MimeMessage message = this.mailSender.createMimeMessage();
-
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(html, true);
-            this.mailSender.send(message);
-        } catch (MessagingException e) {
-            System.out.println(e.getMessage());
-        }
+        this.rabbitTemplate.convertAndSend("email.queue", emailMessage);
     }
 }
