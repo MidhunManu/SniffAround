@@ -20,8 +20,7 @@ public class EmailConsumer {
     private final TemplateEngine templateEngine;
 
     @RabbitListener(queues = "email.queue")
-    public void send(EmailMessage email) {
-        try {
+    public void send(EmailMessage email) throws MessagingException {
             Context context = new Context();
             context.setVariables(
                     Map.of(
@@ -43,8 +42,5 @@ public class EmailConsumer {
             helper.setText(html, true);
 
             mailSender.send(message);
-        } catch (MessagingException e) {
-            System.out.println(e.getMessage());
-        }
     }
 }
